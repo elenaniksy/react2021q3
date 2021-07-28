@@ -2,8 +2,8 @@ import path from "path";
 import webpack, { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import ESLintPlugin from "eslint-webpack-plugin";
 
-// @ts-ignore
 const config: webpack.Configuration = {
   mode: "development",
   output: {
@@ -38,6 +38,9 @@ const config: webpack.Configuration = {
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin({
       async: false
+    }),
+    new ESLintPlugin({
+      extensions: ["js", "jsx", "ts", "tsx"],
     }),
   ],
   devtool: "inline-source-map",
