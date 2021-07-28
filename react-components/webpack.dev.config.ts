@@ -1,6 +1,7 @@
 import path from "path";
 import webpack, { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 // @ts-ignore
 const config: webpack.Configuration = {
@@ -35,6 +36,9 @@ const config: webpack.Configuration = {
       template: "src/index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: false
+    }),
   ],
   devtool: "inline-source-map",
   //@ts-ignore
