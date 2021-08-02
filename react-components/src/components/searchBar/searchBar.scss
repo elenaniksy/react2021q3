@@ -1,0 +1,22 @@
+@import '../../base_sass/constants';
+@import '../../base_sass/mixins';
+
+.search-bar {
+  border: 4px solid $main-green;
+  border-radius: 50px;
+  width: 100%;
+
+  &__line {
+    @include flex($display: inline-flex, $direction: row);
+    padding: 10px 20px;
+    width: 100%;
+
+    > .input__text, .input__submit {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: $purple;
+      @include font($size: 3rem, $weight: 600, $align: justify);
+    }
+  }
+}
