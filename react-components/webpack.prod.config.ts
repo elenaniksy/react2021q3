@@ -55,9 +55,9 @@ const config: webpack.Configuration = {
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css',
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [{ from: 'public' }],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: './src/assets/', to: './build/assets', noErrorOnMissing: true }],
+    }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
