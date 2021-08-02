@@ -4,3 +4,10 @@
   font-weight: $weight;
   text-align: $align;
 }
+
+@mixin flex ($display: flex, $direction: column, $align: center, $justify: space-between) {
+  display: $display;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
