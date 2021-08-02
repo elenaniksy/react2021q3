@@ -60,7 +60,13 @@ const config: webpack.Configuration = {
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'public' }],
+      patterns: [
+        {
+          from: './src/assets',
+          to: './build/assets',
+          noErrorOnMissing: true,
+        },
+      ],
     }),
   ],
   devtool: 'inline-source-map',
