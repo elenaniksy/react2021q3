@@ -56,7 +56,16 @@ const config: webpack.Configuration = {
       filename: '[name].[contentHash].css',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: './src/assets/', to: './build/assets', noErrorOnMissing: true }],
+      patterns: [
+        {
+          from: './src/assets/',
+          to: './build/assets',
+          noErrorOnMissing: true,
+        },
+        {
+          from: 'public',
+        },
+      ],
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,

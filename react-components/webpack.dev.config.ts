@@ -66,6 +66,9 @@ const config: webpack.Configuration = {
           to: './build/assets',
           noErrorOnMissing: true,
         },
+        {
+          from: 'public',
+        },
       ],
     }),
   ],
