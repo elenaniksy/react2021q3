@@ -1,12 +1,14 @@
 import React from 'react';
 import './cardsHolder.scss';
 import { CardsHolderStateModel } from '../Models/CardsHolderStateModel';
+import { CardItemModel } from '../Models/CardItemModel';
+import Card from '../card/card';
 
 class CardsHolder extends React.Component {
   constructor(props: any) {
     super(props);
 
-    const state: CardsHolderStateModel = {
+    this.state = {
       data: null,
     };
   }
@@ -18,7 +20,17 @@ class CardsHolder extends React.Component {
   }
 
   render() {
-    return <div className={'cards-holder'}></div>;
+    return (
+      <div className={'cards-holder'}>
+        {this.state.data ? (
+          this.state.data.map((card: CardItemModel, index: number) => {
+            return <Card key={index} name={card.name} />;
+          })
+        ) : (
+          <h1>Error</h1>
+        )}
+      </div>
+    );
   }
 }
 
