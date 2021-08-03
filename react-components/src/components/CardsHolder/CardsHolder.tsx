@@ -4,7 +4,10 @@ import { CardsHolderStateModel } from '../Models/CardsHolderStateModel';
 import { CardItemModel } from '../Models/CardItemModel';
 import Card from '../card/card';
 
-class CardsHolder extends React.Component {
+type CardsHolderProps = {};
+type CardsHolderState = CardsHolderStateModel;
+
+class CardsHolder extends React.Component<CardsHolderProps, CardsHolderState> {
   constructor(props: any) {
     super(props);
 
