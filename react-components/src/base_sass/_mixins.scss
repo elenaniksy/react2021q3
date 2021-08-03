@@ -11,3 +11,12 @@
   align-items: $align;
   justify-content: $justify;
 }
+
+@mixin columns($width, $display: flex, $wrap: wrap, $justify: space-between) {
+  display: $display;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  >* {
+    flex-basis: $width;
+  }
+}
