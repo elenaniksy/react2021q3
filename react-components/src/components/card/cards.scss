@@ -1,0 +1,46 @@
+@import '../../base_sass/mixins';
+@import '../../base_sass/constants';
+
+.card {
+  @include flex();
+  @include font($size: 1.3rem);
+  min-width: 200px;
+  background-color: $white;
+  border-radius: 10px;
+  margin: 15px 0;
+  padding: 10px;
+  transition: all ease-in 0.3s;
+
+  &__header {
+    text-transform: capitalize;
+    @include font($size: 1.4rem, $weight: 800);
+  }
+
+  &__img {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  &__statistic {
+    @include flex($display: inline-flex, $direction: row);
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+  }
+
+  &__link {
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    color: $main-green;
+  }
+
+  >* {
+    margin: 2px 0;
+  }
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0.3rem 0.8rem $dark;
+  }
+}
