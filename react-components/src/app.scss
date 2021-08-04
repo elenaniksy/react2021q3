@@ -1,0 +1,20 @@
+@import './base_sass/constants';
+@import './base_sass/mixins';
+
+.app {
+
+  &__wrapper {
+    background-color: $light;
+    @include flex();
+    margin: 40px auto;
+    max-width: 70vw;
+    height: 100%;
+    padding: 20px;
+  }
+
+  &__header {
+    @include font($size: 3.5rem, $weight: 600);
+    margin: 0 0 20px 0;
+  }
+}
+

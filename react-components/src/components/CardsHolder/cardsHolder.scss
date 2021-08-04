@@ -1,0 +1,5 @@
+@import '../../base_sass/mixins';
+
+.cards-holder {
+  @include columns($width: 30%);
+}
