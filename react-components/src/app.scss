@@ -13,7 +13,8 @@
   }
 
   &__header {
-    @include font($size: 4rem, $weight: 600);
+    @include font($size: 3.5rem, $weight: 600);
+    margin: 0 0 20px 0;
   }
 }
 
