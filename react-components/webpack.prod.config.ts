@@ -55,23 +55,24 @@ const config: webpack.Configuration = {
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css',
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: './src/assets/',
-          to: './build/assets',
+          to: './assets',
           noErrorOnMissing: true,
         },
         {
           from: 'public',
         },
       ],
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-    new ESLintPlugin({
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
     new CleanWebpackPlugin(),
   ],
