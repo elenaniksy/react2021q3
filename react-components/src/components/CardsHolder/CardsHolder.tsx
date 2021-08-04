@@ -4,11 +4,13 @@ import { CardsHolderStateModel } from '../Models/CardsHolderStateModel';
 import { CardItemModel } from '../Models/CardItemModel';
 import Card from '../card/Card';
 
-type CardsHolderProps = {};
+type CardsHolderProps = Record<string, unknown>;
+
 type CardsHolderState = CardsHolderStateModel;
+type RenderType = JSX.Element | Array<RenderType> | string | number | boolean | null;
 
 class CardsHolder extends React.Component<CardsHolderProps, CardsHolderState> {
-  constructor(props: any) {
+  constructor(props: CardsHolderProps) {
     super(props);
 
     this.state = {
@@ -22,7 +24,7 @@ class CardsHolder extends React.Component<CardsHolderProps, CardsHolderState> {
       .then(data => this.setState({ data }));
   }
 
-  render() {
+  render(): RenderType {
     return (
       <div className={'cards-holder'}>
         {this.state.data ? (
@@ -30,7 +32,6 @@ class CardsHolder extends React.Component<CardsHolderProps, CardsHolderState> {
             return (
               <Card
                 key={index}
-                // @ts-ignore
                 name={card.name}
                 image={card.image}
                 author={card.author}

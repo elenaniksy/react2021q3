@@ -1,9 +1,10 @@
-import React, { ReactChild } from 'react';
+import React from 'react';
 import './cards.scss';
 import { CardItemModel } from '../Models/CardItemModel';
 
-// @ts-ignore
-const Card: React.FC = (props: CardItemModel) => {
+type CardProps = CardItemModel;
+
+const Card: React.FC<CardProps> = (props: CardProps) => {
   return (
     <div className={'card'}>
       <img className={'card__img'} src={props.image} alt={props.name} />
