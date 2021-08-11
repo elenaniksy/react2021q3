@@ -4,7 +4,7 @@
 .female {
   background-image: linear-gradient(to right, #ffa459, #ff9255, #ff7e55, #ff6958, #fd535e); }
 
-.Button {
+.button {
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
@@ -18,13 +18,13 @@
   cursor: pointer;
   width: 100%; }
 
-.Button:focus {
+.button:focus {
   outline: none; }
 
-.Button:active {
+.button:active {
   box-shadow: inset 2px 2px 1px rgba(255, 255, 255, 0.7); }
 
-.Button:disabled {
+.button:disabled {
   background-color: #BFCACC;
   color: #212121;
   cursor: not-allowed; }

@@ -1,6 +1,6 @@
 @import '../../../layout/abstract/config';
 
-.Button {
+.button {
   @include font($size: 1.5rem, $weight: 500);
   display: inline-block;
   padding: 10px 20px;
@@ -12,15 +12,15 @@
   width: 100%;
 }
 
-.Button:focus {
+.button:focus {
   outline: none;
 }
 
-.Button:active {
+.button:active {
   box-shadow: inset 2px 2px 1px rgba(255, 255, 255, .7);
 }
 
-.Button:disabled {
+.button:disabled {
   background-color: $super-light-grey;
   color: $dark;
   cursor: not-allowed;
