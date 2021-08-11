@@ -1,0 +1,12 @@
+@import 'layout/base/base';
+
+.container {
+  @include flex();
+  height: 100vh;
+  max-width: 70%;
+  margin: 20px auto;
+}
+
+.header {
+  @include font($size: 3.5rem, $weight: 700);
+}
