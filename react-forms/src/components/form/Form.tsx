@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './form.module.scss';
 import { RenderType } from '../../models/RenderType';
+import Input from '../UI/input/Input';
 import Button from '../UI/button/Button';
 
 class Form extends React.Component {
@@ -15,10 +16,10 @@ class Form extends React.Component {
   render(): RenderType {
     return (
       <div className={classes.form}>
-        <h2>Enter your data...</h2>
+        {/*<h2>Enter your data...</h2>*/}
         <form onSubmit={this.submitHandler}>
-          <input type='text' />
-          <input type='text' />
+          <Input label={'Name'} errorMessage={'Test'} />
+          <Input label={'Birthday'} />
           <Button onClick={() => this.registerHandler} type={'female'}>
             Send
           </Button>

@@ -1,0 +1,35 @@
+.input {
+  margin: 0 0 10px 0;
+  width: 100%;
+  text-align: left; }
+
+.input label {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 3px;
+  padding: 0;
+  display: block; }
+
+.input input {
+  display: block;
+  box-sizing: border-box;
+  border: 1px solid #BFCACC;
+  width: 100%;
+  padding: 5px;
+  margin: 0 0 5px;
+  outline: none;
+  transition: all 0.3s ease-in-out; }
+
+.input span {
+  color: #FD535E;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 300;
+  text-align: left; }
+
+.input.invalid label {
+  color: #FD535E; }
+
+/*# sourceMappingURL=Input.module.css.map */
