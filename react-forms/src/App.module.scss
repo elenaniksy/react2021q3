@@ -2,7 +2,6 @@
 
 .container {
   @include flex();
-  height: 100vh;
   max-width: 70%;
   margin: 20px auto;
 }
