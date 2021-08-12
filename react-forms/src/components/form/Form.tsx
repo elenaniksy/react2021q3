@@ -108,7 +108,8 @@ class Form extends React.Component {
   };
 
   registerHandler = () => {
-    console.log('registerHandler');
+    //todo: implement here componet which will render elements with value of formControls
+    //console.log(this.state.formControls, 'registerHandler');
   };
 
   submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -120,7 +121,7 @@ class Form extends React.Component {
       <div className={classes.form}>
         <form onSubmit={this.submitHandler}>
           {this.renderInputs()}
-          <Button onClick={() => this.registerHandler} type={'primary'} disabled={!this.state.isFormValid}>
+          <Button onClick={this.registerHandler} type={'primary'} disabled={!this.state.isFormValid}>
             Send
           </Button>
         </form>
