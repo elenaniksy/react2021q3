@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Input.module.scss';
-import { FormControlItemModel } from '../../../models/FormControlItemModel';
 
 type InputProps = {
   type: string;

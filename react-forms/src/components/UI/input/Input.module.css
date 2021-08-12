@@ -32,4 +32,7 @@
 .input.invalid label {
   color: #FD535E; }
 
+input[type=checkbox] {
+  max-width: 15px; }
+
 /*# sourceMappingURL=Input.module.css.map */

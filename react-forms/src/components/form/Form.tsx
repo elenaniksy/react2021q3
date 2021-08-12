@@ -38,6 +38,18 @@ class Form extends React.Component {
           required: true,
         },
       },
+      agree: {
+        value: '',
+        type: 'checkbox',
+        label: 'I confirm these information',
+        errorMessage: 'Confirm this form',
+        valid: false,
+        touched: false,
+        validation: {
+          required: true,
+          checked: false,
+        },
+      },
     },
   };
 
@@ -57,6 +69,10 @@ class Form extends React.Component {
       isValid = value.length >= validation.minLength && isValid;
     }
 
+    if (validation.checked) {
+      return (isValid = true);
+    }
+
     return isValid;
   }
 
@@ -64,6 +80,9 @@ class Form extends React.Component {
     const formControls: FormControlsModel = { ...this.state.formControls };
     // @ts-ignore //todo: check control type
     const control: FormControlItemModel = { ...formControls[controlName] };
+
+    // @ts-ignore //todo: check why checked does not exist in EventTarget
+    control.validation.checked = event.target.checked ? true : null;
 
     // @ts-ignore //todo: check why value does not exist in EventTarget
     control.value = event.target.value;
@@ -76,6 +95,7 @@ class Form extends React.Component {
       isFormValid = formControls[name].valid && isFormValid;
     });
 
+    console.log(control);
     // @ts-ignore //todo: check control type
     formControls[controlName] = control;
     this.setState({
