@@ -3,16 +3,19 @@ import classes from './form.module.scss';
 import { RenderType } from '../../models/RenderType';
 import Input from '../UI/input/Input';
 import Button from '../UI/button/Button';
+import Select from '../UI/select/Select';
 import { FormControlsModel } from '../../models/FormControlsModel';
 import { FormControlItemModel } from '../../models/FormControlItemModel';
 
 type FormStateModel = {
+  selectCountry: string;
   isFormValid: boolean;
   formControls: FormControlsModel;
 };
 
 class Form extends React.Component {
   state: FormStateModel = {
+    selectCountry: 'Russia',
     isFormValid: false,
     formControls: {
       name: {
@@ -89,13 +92,12 @@ class Form extends React.Component {
     control.touched = true;
     control.valid = this.validateControl(control.value, control.validation);
 
-    let isFormValid: boolean = true;
+    let isFormValid = true;
     Object.keys(formControls).forEach((name: string): void => {
       // @ts-ignore //todo: check formControls[name].value type
       isFormValid = formControls[name].valid && isFormValid;
     });
 
-    console.log(control);
     // @ts-ignore //todo: check control type
     formControls[controlName] = control;
     this.setState({
@@ -128,7 +130,7 @@ class Form extends React.Component {
   };
 
   registerHandler = () => {
-    //todo: implement here componet which will render elements with value of formControls
+    //todo: implement here component which will render elements with values from formControls
     //console.log(this.state.formControls, 'registerHandler');
   };
 
@@ -136,10 +138,30 @@ class Form extends React.Component {
     event.preventDefault();
   };
 
+  selectChangeHandler = (event: React.FormEvent) => {
+    this.setState({
+      // @ts-ignore //todo: check formControls[name].value type
+      selectCountry: event.target.value,
+    });
+  };
+
   render(): RenderType {
+    const select = (
+      <Select
+        label={'Country...'}
+        value={this.state.selectCountry}
+        onChange={this.selectChangeHandler}
+        options={[
+          { text: 'Russia', value: 'Russia' },
+          { text: 'Belarus', value: 'Belarus' },
+          { text: 'Ukraine', value: 'Ukraine' },
+        ]}
+      />
+    );
     return (
       <div className={classes.form}>
         <form onSubmit={this.submitHandler}>
+          {select}
           {this.renderInputs()}
           <Button onClick={this.registerHandler} type={'primary'} disabled={!this.state.isFormValid}>
             Send

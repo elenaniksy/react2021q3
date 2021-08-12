@@ -20,7 +20,7 @@ function isInvalid({ valid, shouldValidate, touched }: InputProps): boolean {
 const Input: React.FC<InputProps> = (props: InputProps) => {
   const inputType: string = props.type || 'text';
   const cls: string[] = [classes.input];
-  const htmlFor: string = `${inputType}-${Math.random()}`;
+  const htmlFor = `${inputType}-${Math.random()}`;
 
   if (isInvalid(props)) {
     cls.push(classes.invalid);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassesModel } from '../../../models/ ClassesModel';
+import { ClassesModel } from '../../../models/ClassesModel';
 import classes from './Button.module.scss';
 
 type propsType = {
