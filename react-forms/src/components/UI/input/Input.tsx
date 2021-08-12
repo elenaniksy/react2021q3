@@ -1,32 +1,29 @@
 import React from 'react';
 import classes from './Input.module.scss';
+import { FormControlItemModel } from '../../../models/FormControlItemModel';
 
-type PropsType = {
+type InputProps = {
   type: string;
-  label: string;
   value: string;
-  //todo: fix onClick type
+  //todo: fix type onChange function
   onChange: any;
+  label: string;
   errorMessage: string;
-};
-
-type isInvalidPropsType = {
-  //todo: check valid type
   valid: boolean;
   touched: boolean;
   shouldValidate: boolean;
 };
 
-function isInvalid(isInvalidProps: isInvalidPropsType): boolean {
-  return !isInvalidProps.valid && isInvalidProps.shouldValidate && isInvalidProps.touched;
+function isInvalid({ valid, shouldValidate, touched }: InputProps): boolean {
+  return !valid && shouldValidate && touched;
 }
 
-const Input: React.FC<PropsType> = (props: PropsType) => {
+const Input: React.FC<InputProps> = (props: InputProps) => {
   const inputType: string = props.type || 'text';
   const cls: string[] = [classes.input];
   const htmlFor: string = `${inputType}-${Math.random()}`;
 
-  if (isInvalid(isInvalidProps)) {
+  if (isInvalid(props)) {
     cls.push(classes.invalid);
   }
 
@@ -35,7 +32,7 @@ const Input: React.FC<PropsType> = (props: PropsType) => {
       <label htmlFor={htmlFor}>{props.label}</label>
       <input type={inputType} id={htmlFor} value={props.value} onChange={props.onChange} />
 
-      {isInvalid(isInvalidProps) ? <span>{props.errorMessage}</span> : null}
+      {isInvalid(props) ? <span>{props.errorMessage}</span> : null}
     </div>
   );
 };
