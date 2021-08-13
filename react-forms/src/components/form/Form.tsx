@@ -64,7 +64,6 @@ class Form extends React.Component {
       },
     },
   };
-
   validateControl(value: string, validation: IValidation): boolean {
     if (!validation) {
       return true;
@@ -73,7 +72,7 @@ class Form extends React.Component {
     let isValid = true;
 
     if (validation.required) {
-      isValid = value.trim() !== '' && isValid;
+      isValid = value.trim() !== '';
     }
 
     if (validation.minLength) {
@@ -81,25 +80,26 @@ class Form extends React.Component {
     }
 
     if (validation.checked) {
-      isValid = true;
+      isValid = validation.checked;
     }
 
     return isValid;
   }
 
-  onChangeHandler = (event: React.FormEvent<HTMLInputElement>, controlName: string): void => {
-    const target = event.target as HTMLInputElement;
-    const value: string = target.value;
-    const checked: boolean = target.checked;
-
+  onChangeHandler = async (event: React.FormEvent<HTMLInputElement>, controlName: string): Promise<void> => {
     const formControls: FormControlsModel = { ...this.state.formControls };
     // @ts-ignore //todo: check control type
     const control: FormControlItemModel = { ...formControls[controlName] };
 
-    control.validation.checked = checked;
+    const target = event.target as HTMLInputElement;
+    let value: string = target.value;
+    let checked = target.checked;
+
     control.value = value;
     control.touched = true;
+    control.validation.checked = checked;
     control.valid = this.validateControl(control.value, control.validation);
+
 
     let isFormValid = true;
     Object.keys(formControls).forEach((name: string): void => {
@@ -109,7 +109,7 @@ class Form extends React.Component {
 
     // @ts-ignore //todo: check control type
     formControls[controlName] = control;
-    this.setState({
+    await this.setState({
       formControls,
       isFormValid,
     });
