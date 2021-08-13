@@ -8,6 +8,7 @@
 
 .input label {
   @include font($size: 1.6rem, $weight: 400, $align: left);
+  text-transform: capitalize;
   margin-bottom: 3px;
   padding: 0;
   display: block;

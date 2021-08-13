@@ -8,6 +8,7 @@
   font-style: normal;
   font-weight: 400;
   text-align: left;
+  text-transform: capitalize;
   margin-bottom: 3px;
   padding: 0;
   display: block; }
