@@ -24,7 +24,7 @@ interface IValidation {
 class Form extends React.Component {
   state: FormStateModel = {
     selectCountry: 'Russia',
-    gender: 'female',
+    gender: 'female', //input checked: female === false, male === true
     isFormValid: false,
     formControls: {
       name: {
@@ -156,6 +156,20 @@ class Form extends React.Component {
     });
   };
 
+  toggleSwitchHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const checked = target.checked;
+    if (checked) {
+      this.setState({
+        gender: 'male',
+      });
+    } else {
+      this.setState({
+        gender: 'female',
+      });
+    }
+  };
+
   render(): RenderType {
     const select = (
       <Select
@@ -170,7 +184,7 @@ class Form extends React.Component {
       />
     );
 
-    const switcher = <Switcher label={'Gender'} value={this.state.gender} type={'checkbox'} />;
+    const switcher = <Switcher label={'Gender'} value={this.state.gender} type={'checkbox'} onChange={this.toggleSwitchHandler} />;
     return (
       <div className={classes.form}>
         <form onSubmit={this.submitHandler}>

@@ -51,7 +51,7 @@
       left: 0;
       top: 0;
       transform: translateX(45px);
-      transition: transform 600ms linear;
+      transition: transform 400ms linear;
       z-index: 5;
       border-radius: 30px;
     }
@@ -59,7 +59,7 @@
 
 .switcher input:checked + label:before {
   transform: translateX(0);
-  transition: transform 600ms linear;
+  transition: transform 400ms linear;
 }
 
 .switcher span {

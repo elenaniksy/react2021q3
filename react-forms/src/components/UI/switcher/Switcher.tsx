@@ -6,6 +6,7 @@ type SwitcherProps = {
   type: string;
   value: string;
   label: string;
+  onChange(event: React.FormEvent<HTMLInputElement>): void;
 };
 
 const Switcher: React.FC<SwitcherProps> = (props: SwitcherProps) => {
@@ -14,7 +15,7 @@ const Switcher: React.FC<SwitcherProps> = (props: SwitcherProps) => {
   const cls: string[] = [incomingClasses.switcher, incomingClasses[props.value]];
 
   return (
-    <div className={cls.join(' ')}>
+    <div className={cls.join(' ')} onChange={props.onChange}>
       <input type={props.type} id={htmlFor} />
       <label htmlFor={htmlFor}>
         <span>F</span>
