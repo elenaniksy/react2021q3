@@ -1,0 +1,75 @@
+@import '../../../layout/abstract/config';
+
+.switcher {
+  @include font($size: 1.5rem, $weight: 400);
+  overflow: hidden;
+  width: 90px;
+  color: $dark;
+  position: relative;
+  padding-right: 45px;
+  border-radius: 30px;
+  margin: 10px 0;
+  cursor: pointer;
+
+  &:before {
+    @include flex($align: center, $justify: center);
+    content: "M";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    pointer-events: none;
+  }
+}
+
+.switcher input {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: 50px;
+  max-height: fit-content;
+  opacity: 0;
+}
+
+.switcher label {
+    position: relative;
+    padding: 5px 0;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    border-radius: 30px;
+    z-index: 1;
+
+    &:before {
+      content: '';
+      background: $light;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateX(45px);
+      transition: transform 600ms linear;
+      z-index: 5;
+      border-radius: 30px;
+    }
+}
+
+.switcher input:checked + label:before {
+  transform: translateX(0);
+  transition: transform 600ms linear;
+}
+
+.switcher span {
+  position: relative;
+}
+
+.female {
+  @extend %orange-pink-gradient;
+}
+
+.male {
+  @extend %green-blue-gradient;
+}

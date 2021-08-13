@@ -6,10 +6,11 @@ import Button from '../UI/button/Button';
 import Select from '../UI/select/Select';
 import { FormControlsModel } from '../../models/FormControlsModel';
 import { FormControlItemModel } from '../../models/FormControlItemModel';
+import Switcher from '../UI/switcher/Switcher';
 
 type FormStateModel = {
   selectCountry: string;
-  buttonType: string;
+  gender: string;
   isFormValid: boolean;
   formControls: FormControlsModel;
 };
@@ -23,7 +24,7 @@ interface IValidation {
 class Form extends React.Component {
   state: FormStateModel = {
     selectCountry: 'Russia',
-    buttonType: 'female',
+    gender: 'female',
     isFormValid: false,
     formControls: {
       name: {
@@ -168,14 +169,18 @@ class Form extends React.Component {
         ]}
       />
     );
+
+    const switcher = <Switcher label={'Gender'} value={this.state.gender} type={'checkbox'} />;
     return (
       <div className={classes.form}>
         <form onSubmit={this.submitHandler}>
           {this.renderInputs()}
 
+          {switcher}
+
           {select}
 
-          <Button onClick={this.registerHandler} type={this.state.buttonType} disabled={!this.state.isFormValid}>
+          <Button onClick={this.registerHandler} type={this.state.gender} disabled={!this.state.isFormValid}>
             Send
           </Button>
         </form>
