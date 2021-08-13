@@ -5,8 +5,7 @@ import classes from './Button.module.scss';
 type propsType = {
   type: string;
   children: string;
-  //todo: fix onclick type after implement
-  onClick: any;
+  onClick(): void;
   disabled?: boolean;
 };
 

@@ -9,13 +9,21 @@ import { FormControlItemModel } from '../../models/FormControlItemModel';
 
 type FormStateModel = {
   selectCountry: string;
+  buttonType: string;
   isFormValid: boolean;
   formControls: FormControlsModel;
 };
 
+interface IValidation {
+  required: boolean;
+  checked?: boolean;
+  minLength?: number;
+}
+
 class Form extends React.Component {
   state: FormStateModel = {
     selectCountry: 'Russia',
+    buttonType: 'female',
     isFormValid: false,
     formControls: {
       name: {
@@ -56,16 +64,15 @@ class Form extends React.Component {
     },
   };
 
-  //todo: declare interface of validation
-  validateControl(value: string, validation: any): boolean {
+  validateControl(value: string, validation: IValidation): boolean {
     if (!validation) {
       return true;
     }
 
-    let isValid: boolean = true;
+    let isValid = true;
 
     if (validation.required) {
-      isValid = value.trim() !== '';
+      isValid = value.trim() !== '' && isValid;
     }
 
     if (validation.minLength) {
@@ -73,22 +80,23 @@ class Form extends React.Component {
     }
 
     if (validation.checked) {
-      return (isValid = true);
+      isValid = true;
     }
 
     return isValid;
   }
 
   onChangeHandler = (event: React.FormEvent<HTMLInputElement>, controlName: string): void => {
+    const target = event.target as HTMLInputElement;
+    const value: string = target.value;
+    const checked: boolean = target.checked;
+
     const formControls: FormControlsModel = { ...this.state.formControls };
     // @ts-ignore //todo: check control type
     const control: FormControlItemModel = { ...formControls[controlName] };
 
-    // @ts-ignore //todo: check why checked does not exist in EventTarget
-    control.validation.checked = event.target.checked ? true : null;
-
-    // @ts-ignore //todo: check why value does not exist in EventTarget
-    control.value = event.target.value;
+    control.validation.checked = checked;
+    control.value = value;
     control.touched = true;
     control.valid = this.validateControl(control.value, control.validation);
 
@@ -106,10 +114,10 @@ class Form extends React.Component {
     });
   };
 
-  renderInputs = () => {
+  renderInputs = (): JSX.Element[] => {
     const inputs: JSX.Element[] = Object.keys(this.state.formControls).map((controlName: string, index: number) => {
-      // @ts-ignore //todo: check control type
-      const control: FormControlItemModel = this.state.formControls[controlName];
+      // @ts-ignore
+      const control = this.state.formControls[controlName];
 
       return (
         <Input
@@ -129,7 +137,7 @@ class Form extends React.Component {
     return inputs;
   };
 
-  registerHandler = () => {
+  registerHandler = (): void => {
     //todo: implement here component which will render elements with values from formControls
     //console.log(this.state.formControls, 'registerHandler');
   };
@@ -138,10 +146,12 @@ class Form extends React.Component {
     event.preventDefault();
   };
 
-  selectChangeHandler = (event: React.FormEvent) => {
+  selectChangeHandler = (event: React.FormEvent<HTMLSelectElement>): void => {
+    const target = event.target as HTMLSelectElement;
+    const value: string = target.value;
+
     this.setState({
-      // @ts-ignore //todo: check formControls[name].value type
-      selectCountry: event.target.value,
+      selectCountry: value,
     });
   };
 
@@ -161,9 +171,11 @@ class Form extends React.Component {
     return (
       <div className={classes.form}>
         <form onSubmit={this.submitHandler}>
-          {select}
           {this.renderInputs()}
-          <Button onClick={this.registerHandler} type={'primary'} disabled={!this.state.isFormValid}>
+
+          {select}
+
+          <Button onClick={this.registerHandler} type={this.state.buttonType} disabled={!this.state.isFormValid}>
             Send
           </Button>
         </form>

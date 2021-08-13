@@ -21,17 +21,19 @@
 }
 
 .button:disabled {
-  background-color: $super-light-grey;
+  @extend %grey-gradient;
   color: $dark;
   cursor: not-allowed;
 }
 
 .female {
   @extend %orange-pink-gradient;
+  color: $light;
 }
 
 .male {
   @extend %green-blue-gradient;
+  color: $light;
 }
 
 .primary {

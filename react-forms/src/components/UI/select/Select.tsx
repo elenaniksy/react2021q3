@@ -10,8 +10,7 @@ type Option = {
 type SelectProps = {
   label: string;
   value: string;
-  //todo: define onChange type after implementation
-  onChange: any;
+  onChange(event: React.FormEvent<HTMLSelectElement>): void;
   options: Option[];
 };
 

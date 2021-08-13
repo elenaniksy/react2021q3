@@ -4,8 +4,7 @@ import classes from './Input.module.scss';
 type InputProps = {
   type: string;
   value: string;
-  //todo: fix type onChange function
-  onChange: any;
+  onChange(event: React.FormEvent<HTMLInputElement>): void;
   label: string;
   errorMessage: string;
   valid: boolean;

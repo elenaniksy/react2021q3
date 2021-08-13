@@ -8,6 +8,6 @@ export interface FormControlItemModel {
   validation: {
     required: boolean;
     minLength?: number;
-    checked?: false;
+    checked?: boolean;
   };
 }

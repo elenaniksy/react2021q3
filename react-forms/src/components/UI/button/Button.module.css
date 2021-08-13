@@ -4,6 +4,9 @@
 .female {
   background-image: linear-gradient(to right, #ffa459, #ff9255, #ff7e55, #ff6958, #fd535e); }
 
+.button:disabled {
+  background-image: linear-gradient(to right, #f9f9f9, #ecedee, #dde1e4, #ced5d9, #bfcacc); }
+
 .button {
   font-size: 1.5rem;
   font-style: normal;
@@ -25,9 +28,14 @@
   box-shadow: inset 2px 2px 1px rgba(255, 255, 255, 0.7); }
 
 .button:disabled {
-  background-color: #BFCACC;
   color: #212121;
   cursor: not-allowed; }
+
+.female {
+  color: #F9F9F9; }
+
+.male {
+  color: #F9F9F9; }
 
 .primary {
   background-color: #1DB1BA;
