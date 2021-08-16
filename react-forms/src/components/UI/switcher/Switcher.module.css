@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    content: "M";
+    content: 'M';
     position: absolute;
     top: 0;
     bottom: 0;
@@ -49,7 +49,7 @@
   z-index: 1; }
   .switcher label:before {
     content: '';
-    background: #F9F9F9;
+    background: #f9f9f9;
     height: 100%;
     width: 100%;
     position: absolute;

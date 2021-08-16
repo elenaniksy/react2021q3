@@ -15,7 +15,7 @@
   display: inline-block;
   padding: 10px 20px;
   border-radius: 5px;
-  color: #F9F9F9;
+  color: #f9f9f9;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
@@ -32,13 +32,13 @@
   cursor: not-allowed; }
 
 .female {
-  color: #F9F9F9; }
+  color: #f9f9f9; }
 
 .male {
-  color: #F9F9F9; }
+  color: #f9f9f9; }
 
 .primary {
-  background-color: #1DB1BA;
-  color: #F9F9F9; }
+  background-color: #1db1ba;
+  color: #f9f9f9; }
 
 /*# sourceMappingURL=Button.module.css.map */

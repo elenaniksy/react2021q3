@@ -16,7 +16,7 @@
 .input input {
   display: block;
   box-sizing: border-box;
-  border: 1px solid #BFCACC;
+  border: 1px solid #bfcacc;
   width: 100%;
   padding: 5px;
   margin: 0 0 5px;
@@ -24,16 +24,16 @@
   transition: all 0.3s ease-in-out; }
 
 .input span {
-  color: #FD535E;
+  color: #fd535e;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 300;
   text-align: left; }
 
 .input.invalid label {
-  color: #FD535E; }
+  color: #fd535e; }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   max-width: 15px; }
 
 /*# sourceMappingURL=Input.module.css.map */

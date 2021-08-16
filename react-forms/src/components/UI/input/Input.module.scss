@@ -30,11 +30,10 @@
   @include font($size: 1.5rem, $weight: 300, $align: left);
 }
 
-.input.invalid label{
+.input.invalid label {
   color: $pink;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   max-width: 15px;
 }
-
