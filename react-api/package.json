@@ -2,8 +2,16 @@
   "name": "react-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "main": "src.index.tsx",
+  "scripts": {
+    "start": "webpack serve --config webpack.dev.config.ts",
+    "build": "webpack --config webpack.prod.config.ts",
+    "format: all": "prettier --write src",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
+    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "start-lint": "npm run lint && start",
+    "build-lint": "npm run lint && build"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -20,6 +28,7 @@
     "@types/copy-webpack-plugin": "^8.0.1",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/mini-css-extract-plugin": "^2.0.1",
+    "@types/node": "^16.6.1",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/webpack": "^5.28.0",
