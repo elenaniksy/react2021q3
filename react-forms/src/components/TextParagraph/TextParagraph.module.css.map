@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,cAAe;EACb,KAAK,ECCC,OAAO",
+"sources": ["TextParagraph.module.scss","../../layout/abstract/_constants.scss"],
+"names": [],
+"file": "TextParagraph.module.css"
+}

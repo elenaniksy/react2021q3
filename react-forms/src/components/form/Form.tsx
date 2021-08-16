@@ -1,19 +1,14 @@
 import React from 'react';
 import classes from './form.module.scss';
 import { RenderType } from '../../models/RenderType';
+
 import Input from '../UI/input/Input';
 import Button from '../UI/button/Button';
 import Select from '../UI/select/Select';
-import { FormControlsModel } from '../../models/FormControlsModel';
-import { FormControlItemModel } from '../../models/FormControlItemModel';
 import Switcher from '../UI/switcher/Switcher';
 
-type FormStateModel = {
-  selectCountry: string;
-  gender: string;
-  isFormValid: boolean;
-  formControls: FormControlsModel;
-};
+import { FormControlsModel } from '../../models/FormControlsModel';
+import { StateModel } from '../../models/StateModel';
 
 interface IValidation {
   required: boolean;
@@ -21,8 +16,16 @@ interface IValidation {
   minLength?: number;
 }
 
-class Form extends React.Component {
-  state: FormStateModel = {
+type FormProps = {
+  onSubmit(event: React.FormEvent<HTMLFormElement>, state: StateModel): StateModel;
+};
+
+class Form extends React.Component<FormProps, StateModel> {
+  constructor(props: FormProps) {
+    super(props);
+    this.submitHandler = this.submitHandler.bind(this);
+  }
+  state: StateModel = {
     selectCountry: 'Russia',
     gender: 'female', //input checked: female === false, male === true
     isFormValid: false,
@@ -88,26 +91,22 @@ class Form extends React.Component {
 
   onChangeHandler = async (event: React.FormEvent<HTMLInputElement>, controlName: string): Promise<void> => {
     const formControls: FormControlsModel = { ...this.state.formControls };
-    // @ts-ignore //todo: check control type
-    const control: FormControlItemModel = { ...formControls[controlName] };
+    const control: FormControlsModel = { ...formControls[controlName] };
 
     const target = event.target as HTMLInputElement;
-    let value: string = target.value;
-    let checked = target.checked;
+    const value: string = target.value;
+    const checked = target.checked;
 
     control.value = value;
     control.touched = true;
     control.validation.checked = checked;
     control.valid = this.validateControl(control.value, control.validation);
 
-
     let isFormValid = true;
     Object.keys(formControls).forEach((name: string): void => {
-      // @ts-ignore //todo: check formControls[name].value type
       isFormValid = formControls[name].valid && isFormValid;
     });
 
-    // @ts-ignore //todo: check control type
     formControls[controlName] = control;
     await this.setState({
       formControls,
@@ -117,7 +116,6 @@ class Form extends React.Component {
 
   renderInputs = (): JSX.Element[] => {
     const inputs: JSX.Element[] = Object.keys(this.state.formControls).map((controlName: string, index: number) => {
-      // @ts-ignore
       const control = this.state.formControls[controlName];
 
       return (
@@ -130,6 +128,7 @@ class Form extends React.Component {
           label={control.label}
           errorMessage={control.errorMessage}
           shouldValidate={!!control.validation}
+          checked={control.checked}
           onChange={(event: React.FormEvent<HTMLInputElement>) => this.onChangeHandler(event, controlName)}
         />
       );
@@ -138,13 +137,58 @@ class Form extends React.Component {
     return inputs;
   };
 
-  registerHandler = (): void => {
-    //todo: implement here component which will render elements with values from formControls
-    //console.log(this.state.formControls, 'registerHandler');
+  registerHandler = (): JSX.Element => {
+    return <h1>done</h1>;
   };
 
-  submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
+  submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    this.props.onSubmit(event, this.state);
+    this.resetForm();
+  };
+
+  resetForm = (): void => {
+    this.setState({
+      selectCountry: 'Russia',
+      gender: 'female',
+      isFormValid: false,
+      formControls: {
+        name: {
+          value: '',
+          type: 'text',
+          label: 'name',
+          errorMessage: 'This field should be more then 3 symbols',
+          valid: false,
+          touched: false,
+          validation: {
+            required: true,
+            minLength: 3,
+          },
+        },
+        birthday: {
+          value: '',
+          type: 'date',
+          label: 'birthday',
+          errorMessage: 'Enter your correct Birthday',
+          valid: false,
+          touched: false,
+          validation: {
+            required: true,
+          },
+        },
+        agree: {
+          value: '',
+          type: 'checkbox',
+          label: 'I confirm these information',
+          errorMessage: 'Confirm this form',
+          valid: false,
+          touched: false,
+          validation: {
+            required: true,
+            checked: false,
+          },
+        },
+      },
+    });
   };
 
   selectChangeHandler = (event: React.FormEvent<HTMLSelectElement>): void => {
@@ -191,7 +235,6 @@ class Form extends React.Component {
           {this.renderInputs()}
 
           {switcher}
-
           {select}
 
           <Button onClick={this.registerHandler} type={this.state.gender} disabled={!this.state.isFormValid}>

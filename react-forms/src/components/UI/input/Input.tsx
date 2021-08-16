@@ -10,6 +10,7 @@ type InputProps = {
   valid: boolean;
   touched: boolean;
   shouldValidate: boolean;
+  checked?: boolean;
 };
 
 function isInvalid({ valid, shouldValidate, touched }: InputProps): boolean {
