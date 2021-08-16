@@ -12,10 +12,9 @@ interface AppStateModel {
   selectCountry: string;
   update: boolean;
 }
-interface AppProps {}
 
-class App extends React.Component<AppProps, AppStateModel> {
-  constructor(props: AppProps) {
+class App extends React.Component<any, AppStateModel> {
+  constructor(props: never) {
     super(props);
     this.handleClick.bind(this);
   }

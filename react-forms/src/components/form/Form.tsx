@@ -141,7 +141,7 @@ class Form extends React.Component<FormProps, StateModel> {
     return <h1>done</h1>;
   };
 
-  submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     this.props.onSubmit(event, this.state);
     this.resetForm();
   };
@@ -200,7 +200,7 @@ class Form extends React.Component<FormProps, StateModel> {
     });
   };
 
-  toggleSwitchHandler = (event: React.FormEvent<HTMLInputElement>) => {
+  toggleSwitchHandler = (event: React.FormEvent<HTMLInputElement>): void => {
     const target = event.target as HTMLInputElement;
     const checked = target.checked;
     if (checked) {
