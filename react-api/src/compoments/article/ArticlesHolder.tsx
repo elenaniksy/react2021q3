@@ -9,6 +9,7 @@ interface IArticlesHolderProps {
 
 const ArticlesHolder: React.FC<IArticlesHolderProps> = (props: IArticlesHolderProps) => {
   const incomingArticles: IArticle[] = [...props.articles];
+
   return (
     <div className={classes.article}>
       {incomingArticles.map((article: IArticle, index: number): JSX.Element => {

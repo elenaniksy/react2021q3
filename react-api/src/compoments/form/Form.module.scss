@@ -6,14 +6,18 @@
   width: 100%;
 }
 
-.form form {
+.line {
   @include flex($display: inline-flex, $direction: row);
-  padding: 10px 0;
-  max-width: 700px;
   width: 100%;
 }
 
-.form label {
+.line label {
+  width: 100%;
+}
+
+.form form {
+  @include flex();
+  padding: 10px 0;
   width: 100%;
 }
 
