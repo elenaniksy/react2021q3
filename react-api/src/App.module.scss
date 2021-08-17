@@ -3,7 +3,9 @@
 .app {
   @include flex();
   max-width: 60%;
-  margin: 10px auto;
+  margin: 20px auto;
+  background-color: $dark;
+  border-radius: 5px;
 }
 
 .app h1 {
