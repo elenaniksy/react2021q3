@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'article': string;
+  'article__text': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

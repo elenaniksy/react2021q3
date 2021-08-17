@@ -1,9 +1,36 @@
 @import '../../base-layout/abstract/abstract-config';
 
 .article {
-  @include flex();
+  border: 1px solid $yellow;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.article a {
+  @include flex($direction: row);
+  text-decoration: none;
+  color: $light;
+  @include media-tablet {
+    flex-direction: column;
+  }
+}
+
+.article__text {
+  text-align: left;
+  flex-basis: 40%;
+
+  > * {
+    margin: 10px 0;
+  }
+}
+
+.article__text h2 {
+  @include font($size: 2rem, $align: left);
 }
 
 .article img {
-  max-width: 200px;
+  width: 100%;
+  max-width: 300px;
 }
