@@ -1,0 +1,13 @@
+@import 'base-layout/base/base';
+
+.app {
+  @include flex();
+  max-width: 60%;
+  margin: 10px auto;
+}
+
+.app h1 {
+  @include font($size: 4rem, $weight: 800);
+}
+
+
