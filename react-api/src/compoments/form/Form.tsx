@@ -4,6 +4,7 @@ import axiosInst from '../../services/api';
 import { AxiosResponse } from 'axios';
 import { IArticle } from '../../interfaces/IArticle';
 import { IData_GET200 } from '../../interfaces/IData_GET200';
+import ArticlesHolder from '../article/ArticlesHolder';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
@@ -11,7 +12,7 @@ const Form: React.FC = (): JSX.Element => {
   const htmlFor = `search--${Math.random()}`;
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [art, setArt] = useState<IArticle[]>([]);
+  const [arts, setArt] = useState<IArticle[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
@@ -42,6 +43,7 @@ const Form: React.FC = (): JSX.Element => {
           {isLoading ? 'Loading...' : 'Search'}
         </button>
       </form>
+      <ArticlesHolder articles={arts} />
     </div>
   );
 };

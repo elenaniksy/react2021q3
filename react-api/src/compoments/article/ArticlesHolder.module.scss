@@ -1,0 +1,5 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.article {
+  @include flex();
+}
