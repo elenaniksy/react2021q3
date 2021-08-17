@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import classes from './Form.module.scss';
 import axiosInst from '../../services/api';
 import { AxiosResponse } from 'axios';
-import { IGetData } from '../../interfaces/IGetData';
+import { IArticle } from '../../interfaces/IArticle';
+import { IData_GET200 } from '../../interfaces/IData_GET200';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
-const Form: React.FC = () => {
+const Form: React.FC = (): JSX.Element => {
   const htmlFor = `search--${Math.random()}`;
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [art, setArt] = useState<IArticle[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
@@ -21,7 +23,8 @@ const Form: React.FC = () => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      const response: AxiosResponse<IGetData> = await axiosInst.get(`v2/everything?q=${searchValue}&apiKey=${API_KEY}`);
+      const response: AxiosResponse<IData_GET200> = await axiosInst.get(`v2/everything?q=${searchValue}&apiKey=${API_KEY}`);
+      setArt(response.data.articles);
     } catch (e) {
       throw new Error(`API request error: ${e}`);
     } finally {
