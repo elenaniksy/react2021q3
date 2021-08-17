@@ -1,0 +1,9 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.article {
+  @include flex();
+}
+
+.article img {
+  max-width: 200px;
+}
