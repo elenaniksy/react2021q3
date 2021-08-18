@@ -58,7 +58,11 @@
 }
 
 .date {
+  @include flex($direction: row);
+  margin: 20px 5px;
+}
+
+.date input {
   border-radius: 5px;
-  margin: 10px 5px;
-  max-width: 400px;
+  margin: 0 0 0 10px;
 }

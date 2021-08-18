@@ -16,6 +16,7 @@ const Form: React.FC = (): JSX.Element => {
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
@@ -38,16 +39,13 @@ const Form: React.FC = (): JSX.Element => {
     try {
       setIsLoading(true);
       const response: AxiosResponse<IData_GET200> = await axiosInst.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}`,
+        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=5&page=${page}`,
       );
       setArt(response.data.articles);
     } catch (e) {
       throw new Error(`API request error: ${e}`);
     } finally {
       setIsLoading(false);
-      setSearchValue('');
-      setDateFrom('');
-      setDateTo('');
     }
   };
 
@@ -64,8 +62,14 @@ const Form: React.FC = (): JSX.Element => {
         </div>
 
         <div className={classes.line}>
-          <input className={classes.date} id={'dateFrom'} type='date' value={dateFrom} onChange={handleChange} />
-          <input className={classes.date} id={'dateTo'} type='date' value={dateTo} onChange={handleChange} />
+          <label className={classes.date} htmlFor='dateFrom'>
+            From:
+            <input id={'dateFrom'} type='date' value={dateFrom} onChange={handleChange} />
+          </label>
+          <label className={classes.date} htmlFor='dateTo'>
+            To:
+            <input id={'dateTo'} type='date' value={dateTo} onChange={handleChange} />
+          </label>
         </div>
 
         <div className={classes.line}>
@@ -79,7 +83,7 @@ const Form: React.FC = (): JSX.Element => {
           })}
         </div>
       </form>
-      <ArticlesHolder articles={arts} />
+      <ArticlesHolder articles={arts} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
     </div>
   );
 };
