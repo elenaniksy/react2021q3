@@ -62,38 +62,21 @@ const Form: React.FC = (): JSX.Element => {
             {isLoading ? 'Loading...' : 'Search'}
           </button>
         </div>
+
         <div className={classes.line}>
-          <label>
-            <input
-              type='radio'
-              value={SortType.relevancy}
-              checked={sortBy === SortType.relevancy}
-              onChange={() => setSortBy(SortType.relevancy)}
-            />
-            relevancy
-          </label>
-          <label>
-            <input
-              type='radio'
-              value={SortType.popularity}
-              checked={sortBy === SortType.popularity}
-              onChange={() => setSortBy(SortType.popularity)}
-            />
-            popularity
-          </label>
-          <label>
-            <input
-              type='radio'
-              value={SortType.publishedAt}
-              checked={sortBy === SortType.publishedAt}
-              onChange={() => setSortBy(SortType.publishedAt)}
-            />
-            publishedAt
-          </label>
+          <input className={classes.date} id={'dateFrom'} type='date' value={dateFrom} onChange={handleChange} />
+          <input className={classes.date} id={'dateTo'} type='date' value={dateTo} onChange={handleChange} />
         </div>
+
         <div className={classes.line}>
-          <input id={'dateFrom'} type='date' value={dateFrom} onChange={handleChange} />
-          <input id={'dateTo'} type='date' value={dateTo} onChange={handleChange} />
+          {[SortType.relevancy, SortType.popularity, SortType.publishedAt].map((sortType: SortType, index: number) => {
+            return (
+              <label key={index}>
+                <input type='radio' value={sortType} checked={sortBy === sortType} onChange={() => setSortBy(sortType)} />
+                {sortType}
+              </label>
+            );
+          })}
         </div>
       </form>
       <ArticlesHolder articles={arts} />
