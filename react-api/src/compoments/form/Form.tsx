@@ -39,7 +39,7 @@ const Form: React.FC = (): JSX.Element => {
     try {
       setIsLoading(true);
       const response: AxiosResponse<IData_GET200> = await axiosInst.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=5&page=${page}`,
+        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=10&page=${page}`,
       );
       setArt(response.data.articles);
     } catch (e) {
