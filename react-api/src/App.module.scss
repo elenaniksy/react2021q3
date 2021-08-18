@@ -1,0 +1,15 @@
+@import 'base-layout/base/base';
+
+.app {
+  @include flex();
+  max-width: 60%;
+  margin: 20px auto;
+  background-color: $dark;
+  border-radius: 5px;
+}
+
+.app h1 {
+  @include font($size: 4rem, $weight: 800);
+}
+
+
