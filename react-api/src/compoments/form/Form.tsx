@@ -17,6 +17,7 @@ const Form: React.FC = (): JSX.Element => {
   const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
   const [page, setPage] = useState<number>(1);
+  const [sentRequest, setSentRequest] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
@@ -34,10 +35,11 @@ const Form: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>): Promise<void | JSX.Element> => {
     event.preventDefault();
     try {
       setIsLoading(true);
+      setSentRequest(true);
       const response: AxiosResponse<IData_GET200> = await axiosInst.get(
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=10&page=${page}`,
       );
@@ -83,7 +85,11 @@ const Form: React.FC = (): JSX.Element => {
           })}
         </div>
       </form>
-      <ArticlesHolder articles={arts} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
+      {arts.length === 0 && sentRequest && !isLoading ? (
+        <p>Error Request. Try again or research console error</p>
+      ) : (
+        <ArticlesHolder articles={arts} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
+      )}
     </div>
   );
 };
