@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './App.module.scss';
+import { Route } from 'react-router-dom';
 import Form from './compoments/form/Form';
 import Header from './compoments/header/Header';
 
@@ -8,7 +9,8 @@ const App: React.FC = () => {
     <div className={classes.app}>
       <Header />
       <h1>TASK IV: &lt;React Routing&gt;</h1>
-      <Form />
+
+      <Route path='/' exact render={() => <Form />} />
     </div>
   );
 };
