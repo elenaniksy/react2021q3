@@ -3,13 +3,14 @@
 .app {
   @include flex();
   max-width: 60%;
-  margin: 20px auto;
   background-color: $dark;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .app h1 {
   @include font($size: 4rem, $weight: 800);
+  margin: 70px 0 20px 0;
 }
 
 
