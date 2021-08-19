@@ -8,10 +8,14 @@ const Header: React.FC = () => {
       <nav>
         <ul>
           <li>
-            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/' exact activeClassName={classes.active}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/about'>About</NavLink>
+            <NavLink to='/about' activeClassName={classes.active}>
+              About
+            </NavLink>
           </li>
         </ul>
       </nav>
