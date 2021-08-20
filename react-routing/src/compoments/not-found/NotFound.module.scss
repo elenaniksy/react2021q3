@@ -1,0 +1,17 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.notFound {
+  @include flex();
+}
+
+.notFound h2 {
+  text-transform: uppercase;
+  @include font($size: 4rem, $weight: 800);
+  color: $red;
+}
+
+.notFound p {
+  @include flex();
+  @include font($size: 3rem, $weight: 500);
+  margin: 20px 0;
+}
