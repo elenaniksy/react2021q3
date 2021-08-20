@@ -72,6 +72,7 @@ const ArticlesHolder: React.FC<IArticlesHolderProps> = (props: IArticlesHolderPr
             publishedDate={article.publishedAt}
             content={article.content}
             url={article.url}
+            id={index + 1}
           />
         );
       })}
