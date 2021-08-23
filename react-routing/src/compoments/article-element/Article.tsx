@@ -12,14 +12,14 @@ type IArticleProps = RouteComponentProps<PathParamsType> & {
   publishedDate: string;
   image: string;
   content: string;
-  url: string;
   id: number;
 };
 
 const Article: React.FC<IArticleProps> = (props: IArticleProps) => {
   const history = useHistory();
+
   return (
-    <div className={classes.article} onClick={() => history.push(`/details/${props.id}`)}>
+    <div className={classes.article} onClick={() => history.push(`/details/${props.title}`)}>
       <div className={classes.article__text}>
         <h2>{props.title}</h2>
         <p>{props.author}</p>
