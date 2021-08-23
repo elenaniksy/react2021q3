@@ -2,6 +2,11 @@
 // Please do not change this file!
 interface CssExports {
   'app': string;
+  'page': string;
+  'page-enter': string;
+  'page-enter-active': string;
+  'page-exit': string;
+  'page-exit-active': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
