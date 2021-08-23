@@ -29,7 +29,7 @@ const ArticleDetails: React.FC<MatchProps> = (props: MatchProps): JSX.Element =>
       }
     };
     getResponse();
-  }, []);
+  }, [title]);
 
   return (
     <div className={classes.articleDetails}>
