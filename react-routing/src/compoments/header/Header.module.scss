@@ -1,0 +1,37 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.header {
+  @include flex($direction: row);
+  position: fixed;
+  width: 100%;
+  background-color: $blue;
+  padding: 10px;
+  height: 50px;
+}
+
+.header nav {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.header ul {
+  @include flex($direction: row);
+  width: 100%;
+}
+
+.header li {
+  @include font($size: 2rem);
+  list-style: none;
+  margin: 0 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.header a {
+  color: $dark;
+  text-decoration: none;
+
+  &.active {
+    font-weight: bold;
+  }
+}

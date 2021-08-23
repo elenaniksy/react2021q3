@@ -1,0 +1,68 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.form {
+  padding: 10px 40px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.line {
+  @include flex($display: inline-flex, $direction: row);
+  width: 100%;
+}
+
+.line label {
+  width: 100%;
+}
+
+.form form {
+  @include flex();
+  padding: 10px 0;
+  width: 100%;
+}
+
+.form input {
+  outline: none;
+  border: none;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form button {
+  cursor: pointer;
+  color: $light;
+  background-color: $pink;
+  outline: none;
+  border: none;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.5s ease-in;
+
+  &:hover {
+    background-color: $red;
+  }
+
+  &:active {
+    background-color: $purple;
+  }
+
+  &:disabled {
+    background-color: $purple;
+    opacity: 0.5;
+  }
+}
+
+.date {
+  @include flex($direction: row);
+  margin: 20px 5px;
+}
+
+.date input {
+  border-radius: 5px;
+  margin: 0 0 0 10px;
+}
