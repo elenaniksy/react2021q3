@@ -4,7 +4,7 @@ import axiosInst from '../../services/api';
 import { AxiosResponse } from 'axios';
 import { IArticle } from '../../interfaces/IArticle';
 import { IData_GET200 } from '../../interfaces/IData_GET200';
-import ArticlesHolder from '../article/ArticlesHolder';
+import ArticlesHolder from '../articles-holder/ArticlesHolder';
 import { SortType } from '../../interfaces/SortType';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
@@ -78,7 +78,8 @@ const Form: React.FC = (): JSX.Element => {
           {[SortType.relevancy, SortType.popularity, SortType.publishedAt].map((sortType: SortType, index: number) => {
             return (
               <label key={index}>
-                <input type='radio' value={sortType} checked={sortBy === sortType} onChange={() => setSortBy(sortType)} />
+                <input type='radio' value={sortType} checked={sortBy === sortType}
+                       onChange={() => setSortBy(sortType)} />
                 {sortType}
               </label>
             );

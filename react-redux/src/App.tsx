@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <div className={classes.app}>
       <Header />
-      <h1>TASK IV: &lt;React Routing&gt;</h1>
+      <h1>TASK V: &lt;React Redux&gt;</h1>
       <TransitionGroup>
         <CSSTransition timeout={300} classNames='page' key={location.key}>
           <Switch location={location}>

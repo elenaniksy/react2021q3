@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './ArticlesHolder.module.scss';
 import { IArticle } from '../../interfaces/IArticle';
-import Article from '../article-element/Article';
+import Article from '../article/Article';
 
 interface IArticlesHolderProps {
   articles: IArticle[];
