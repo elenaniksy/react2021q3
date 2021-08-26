@@ -10,6 +10,8 @@ interface IArticlesHolderProps {
 }
 
 const ArticlesHolder: React.FC<IArticlesHolderProps> = (props: IArticlesHolderProps) => {
+  // const articles = useSelector(state => state.articles);
+  // const dispatch = useDispatch();
   const incomingArticles: IArticle[] = [...props.articles];
   const [artPage, setArtPage] = useState<number | string>(1);
 

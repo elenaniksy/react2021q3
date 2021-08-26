@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import articlesReducer from './articles';
+import articlesReducer from './acrticlesReducer';
 
 export default combineReducers({
-  articles: articlesReducer,
+  appState: articlesReducer,
 });

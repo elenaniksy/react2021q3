@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import classes from './Form.module.scss';
-import axiosInst from '../../services/api';
-import { AxiosResponse } from 'axios';
-import { IArticle } from '../../interfaces/IArticle';
-import { IData_GET200 } from '../../interfaces/IData_GET200';
-import ArticlesHolder from '../articles-holder/ArticlesHolder';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { SortType } from '../../interfaces/SortType';
+import { getArticles } from '../../store/actions/actions';
+import ArticlesHolder from '../articles-holder/ArticlesHolder';
+import { IStoreState } from '../../interfaces/IStoreState';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
+type formState = {
+  appState: IStoreState;
+};
+
 const Form: React.FC = (): JSX.Element => {
+  const articles = useSelector((state: formState) => state.appState.articles);
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [arts, setArt] = useState<IArticle[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
@@ -37,18 +41,8 @@ const Form: React.FC = (): JSX.Element => {
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>): Promise<void | JSX.Element> => {
     event.preventDefault();
-    try {
-      setIsLoading(true);
-      setSentRequest(true);
-      const response: AxiosResponse<IData_GET200> = await axiosInst.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=10&page=${page}`,
-      );
-      setArt(response.data.articles);
-    } catch (e) {
-      throw new Error(`API request error: ${e}`);
-    } finally {
-      setIsLoading(false);
-    }
+    const urlResponse = `v2/everything?q=${searchValue}&apiKey=${API_KEY}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=10&page=${page}`;
+    await dispatch(getArticles(urlResponse));
   };
 
   return (
@@ -78,21 +72,20 @@ const Form: React.FC = (): JSX.Element => {
           {[SortType.relevancy, SortType.popularity, SortType.publishedAt].map((sortType: SortType, index: number) => {
             return (
               <label key={index}>
-                <input type='radio' value={sortType} checked={sortBy === sortType}
-                       onChange={() => setSortBy(sortType)} />
+                <input type='radio' value={sortType} checked={sortBy === sortType} onChange={() => setSortBy(sortType)} />
                 {sortType}
               </label>
             );
           })}
         </div>
       </form>
-      {arts.length === 0 && sentRequest && !isLoading ? (
+      {sentRequest && !isLoading ? (
         <p>Error Request. Try again or research console error</p>
       ) : (
-        <ArticlesHolder articles={arts} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
+        <ArticlesHolder articles={articles} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
       )}
     </div>
   );
 };
 
-export default Form;
+export default connect()(Form);
