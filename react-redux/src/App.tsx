@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <Header />
       <h1>TASK V: &lt;React Redux&gt;</h1>
       <TransitionGroup>
-        <CSSTransition timeout={300} classNames='page' key={location.key}>
+        <CSSTransition timeout={300} classNames={classes.page} key={location.key}>
           <Switch location={location}>
             <Route path='/' exact component={Form} />
             <Route path='/about' component={About} />
