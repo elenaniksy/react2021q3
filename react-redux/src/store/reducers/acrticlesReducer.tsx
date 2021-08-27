@@ -44,6 +44,12 @@ export default function articlesReducer(state = initialState, action: Action) {
         articles: action.res,
       };
 
+    case FAIL_ARTICLE_REQUEST:
+      return {
+        isLoading: false,
+        articles: [],
+      };
+
     default:
       return state;
   }

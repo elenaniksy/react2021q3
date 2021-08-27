@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import classes from './Form.module.scss';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { SortType } from '../../interfaces/SortType';
 import { getArticles } from '../../store/actions/actions';
 import ArticlesHolder from '../articles-holder/ArticlesHolder';
-import { IStoreState } from '../../interfaces/IStoreState';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
-type formState = {
-  appState: IStoreState;
-};
-
 const Form: React.FC = (): JSX.Element => {
-  const articles = useSelector((state: formState) => state.appState.articles);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,7 +76,7 @@ const Form: React.FC = (): JSX.Element => {
       {sentRequest && !isLoading ? (
         <p>Error Request. Try again or research console error</p>
       ) : (
-        <ArticlesHolder articles={articles} page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
+        <ArticlesHolder page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
       )}
     </div>
   );
