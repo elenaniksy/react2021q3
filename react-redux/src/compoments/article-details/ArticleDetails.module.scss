@@ -1,0 +1,61 @@
+@import '../../base-layout/abstract/abstract-config';
+
+.articleDetails {
+  @include flex();
+}
+
+.articleDetails button {
+  padding: 10px;
+  background-color: $pink;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: $light;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+
+  &:hover {
+    background-color: $red;
+  }
+
+  &:active {
+    background-color: $purple;
+  }
+}
+
+.articleContent {
+  @include flex();
+  max-width: 100%;
+  padding: 20px 0;
+}
+
+.articleContent p {
+  max-width: 70%;
+}
+
+.articleContent span {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  margin: 10px 0;
+}
+
+.articleContent a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $yellow;
+
+}
+
+.articleContent > * {
+  margin: 5px 0;
+}
+
+
+.articleContent img {
+  max-width: 600px;
+  width: 100%;
+  padding: 10px;
+}
