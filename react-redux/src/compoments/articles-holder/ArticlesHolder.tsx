@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classes from './ArticlesHolder.module.scss';
 import { useSelector } from 'react-redux';
 import { IAppReduxState } from '../../interfaces/IAppReduxState';
@@ -12,56 +12,9 @@ interface IArticlesHolderProps {
 
 const ArticlesHolder: React.FC<IArticlesHolderProps> = (props: IArticlesHolderProps) => {
   const articles = useSelector((state: IAppReduxState) => state.appState.articles);
-  const [artPage, setArtPage] = useState<number | string>(1);
-
-  useEffect(() => {
-    setArtPage(props.page);
-  }, [props.page]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const target: HTMLInputElement = event.target as HTMLInputElement;
-    const value: string = target.value;
-    const regex = /\d+/;
-    const matchedValue = value.match(regex);
-    if (matchedValue) {
-      const newValue = +matchedValue[0];
-      props.onChangePage(newValue);
-      setArtPage(newValue);
-    } else {
-      setArtPage('');
-    }
-  };
-
-  const handlePageChange = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    const target: HTMLButtonElement = event.target as HTMLButtonElement;
-    const id: string = target.id;
-
-    if (id === 'prev' && artPage > 1) {
-      const preValue: number = +artPage - 1;
-      props.onChangePage(preValue);
-      setArtPage(preValue);
-    }
-
-    if (id === 'next') {
-      const nextValue = +artPage + 1;
-      props.onChangePage(nextValue);
-      setArtPage(nextValue);
-    }
-  };
 
   return (
     <div className={classes.article}>
-      <div className={classes.pagination}>
-        <button id='prev' onClick={handlePageChange}>
-          &lt;&lt;
-        </button>
-        <label htmlFor='page-number'>
-          <input id='page-number' type={'text'} value={artPage} onChange={handleChange} />
-        </label>
-        <button id='next' onClick={handlePageChange}>
-          &gt;&gt;
-        </button>
-      </div>
       {articles
         ? articles.map((article: IArticle, index: number): JSX.Element => {
             return (

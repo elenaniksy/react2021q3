@@ -66,3 +66,33 @@
   border-radius: 5px;
   margin: 0 0 0 10px;
 }
+
+
+.pagination {
+  @include flex($direction: row);
+  max-width: 250px;
+  margin: 20px auto;
+
+  > * {
+    margin: 0 5px;
+  }
+}
+
+.pagination button {
+  border-radius: 5px;
+  background-color: $yellow;
+  font-weight: 800;
+  color: $dark;
+
+  &:active {
+    background-color: $pink;
+  }
+}
+
+.pagination input {
+  @include font($size: 2rem, $weight: 800);
+  border-radius: 5px;
+  background-color: $dark;
+  color: $yellow;
+  border: 1px solid $yellow;
+}

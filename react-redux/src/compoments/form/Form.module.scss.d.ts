@@ -4,6 +4,7 @@ interface CssExports {
   'date': string;
   'form': string;
   'line': string;
+  'pagination': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
