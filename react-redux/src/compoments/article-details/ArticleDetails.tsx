@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import classes from './ArticleDetails.module.scss';
-import { AxiosResponse } from 'axios';
-import axiosInst from '../../services/api';
-import { IArticle } from '../../interfaces/IArticle';
-import { IData_GET200 } from '../../interfaces/IData_GET200';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadArticle } from '../../store/actions/actions';
+import { IAppReduxState } from '../../interfaces/IAppReduxState';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
@@ -13,39 +12,33 @@ interface MatchProps {
 }
 
 const ArticleDetails: React.FC<MatchProps> = (props: MatchProps): JSX.Element => {
-  const [data, setData] = useState<null | IArticle>(null);
+  const dispatch = useDispatch();
+  const article = useSelector((state: IAppReduxState) => state.appState.selectedArticle);
   const history = useHistory();
   const { match } = props;
   const title = match.match.params.title;
 
+  const urlResponse = `v2/everything?qInTitle=${title}&apiKey=${API_KEY}`;
+
   useEffect(() => {
-    const getResponse = async (): Promise<void> => {
-      try {
-        const response: AxiosResponse<IData_GET200> = await axiosInst.get(`v2/everything?qInTitle=${title}&apiKey=${API_KEY}`);
-        const incomingArticle: IArticle = response.data.articles[0];
-        setData({ ...incomingArticle });
-      } catch (e) {
-        throw Error(e);
-      }
-    };
-    getResponse();
+    dispatch(loadArticle(urlResponse));
   }, [title]);
 
   return (
     <div className={classes.articleDetails}>
       <button type='button' onClick={() => history.push('/')}>
-        Go to Homepage
+        Back to Articles
       </button>
-      {data ? (
+      {article ? (
         <div className={classes.articleContent}>
-          <h2>{data.title}</h2>
-          <p>{data.author}</p>
-          <p>{data.publishedAt}</p>
-          <p>{data.content}</p>
+          <h2>{article.title}</h2>
+          <p>{article.author}</p>
+          <p>{article.publishedAt}</p>
+          <p>{article.content}</p>
           <span>
-            Read more: <a href={data.url}>here</a>
+            Read more: <a href={article.url}>here</a>
           </span>
-          <img src={data.urlToImage} alt={data.title} />
+          <img src={article.urlToImage} alt={article.title} />
         </div>
       ) : null}
     </div>
