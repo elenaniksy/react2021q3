@@ -16,7 +16,7 @@ interface RouteComponentProps<MatchProps> {
   match: { match: match<MatchProps> };
   location?: H.Location;
   history?: H.History;
-  staticContext?: any;
+  staticContext?: never;
 }
 
 export interface match<MatchProps> {
@@ -35,9 +35,9 @@ const ArticleDetails: React.FC<RouteComponentProps<MatchProps>> = (props: RouteC
 
   const urlResponse = `v2/everything?qInTitle=${title}&apiKey=${API_KEY}`;
 
-  useEffect(() => {
+  useEffect((): void => {
     dispatch(loadArticle(urlResponse));
-  }, [title]);
+  }, []);
 
   return (
     <div className={classes.articleDetails}>
