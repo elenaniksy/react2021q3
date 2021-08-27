@@ -5,12 +5,7 @@ import { IAppReduxState } from '../../interfaces/IAppReduxState';
 import { IArticle } from '../../interfaces/IArticle';
 import Article from '../article/Article';
 
-interface IArticlesHolderProps {
-  page: number;
-  onChangePage: (pageFromInput: number) => void;
-}
-
-const ArticlesHolder: React.FC<IArticlesHolderProps> = (props: IArticlesHolderProps) => {
+const ArticlesHolder: React.FC = () => {
   const articles = useSelector((state: IAppReduxState) => state.appState.articles);
 
   return (

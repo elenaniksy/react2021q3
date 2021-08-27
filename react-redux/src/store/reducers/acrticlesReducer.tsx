@@ -61,7 +61,7 @@ const initialState: IStoreState = {
   selectedArticle: null,
 };
 
-export default function articlesReducer(state = initialState, action: Action) {
+export default function articlesReducer(state = initialState, action: any): IStoreState {
   switch (action.type) {
     case REQUEST_ARTICLES:
       return {
@@ -94,7 +94,7 @@ export default function articlesReducer(state = initialState, action: Action) {
     case LOAD_ARTICLE_FAIL:
       return {
         ...state,
-        selectedArticle: {},
+        selectedArticle: null,
       };
 
     default:

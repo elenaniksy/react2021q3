@@ -114,11 +114,7 @@ const Form: React.FC = (): JSX.Element => {
           </button>
         </div>
       </form>
-      {sentRequest && !isLoading ? (
-        <p>Error Request. Try again or research console error</p>
-      ) : (
-        <ArticlesHolder page={page} onChangePage={(pageFromInput: number) => setPage(pageFromInput)} />
-      )}
+      {sentRequest && !isLoading ? <p>Error Request. Try again or research console error</p> : <ArticlesHolder />}
     </div>
   );
 };

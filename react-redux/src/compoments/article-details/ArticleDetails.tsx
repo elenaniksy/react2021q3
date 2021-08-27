@@ -4,14 +4,29 @@ import classes from './ArticleDetails.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadArticle } from '../../store/actions/actions';
 import { IAppReduxState } from '../../interfaces/IAppReduxState';
+import * as H from 'history';
 
 const API_KEY = 'ed028494cd0a467c9e2ac37f12bc2df4';
 
 interface MatchProps {
-  match: any;
+  title: string;
 }
 
-const ArticleDetails: React.FC<MatchProps> = (props: MatchProps): JSX.Element => {
+interface RouteComponentProps<MatchProps> {
+  match: { match: match<MatchProps> };
+  location?: H.Location;
+  history?: H.History;
+  staticContext?: any;
+}
+
+export interface match<MatchProps> {
+  params: MatchProps;
+  isExact: boolean;
+  path: string;
+  url: string;
+}
+
+const ArticleDetails: React.FC<RouteComponentProps<MatchProps>> = (props: RouteComponentProps<MatchProps>): JSX.Element => {
   const dispatch = useDispatch();
   const article = useSelector((state: IAppReduxState) => state.appState.selectedArticle);
   const history = useHistory();
