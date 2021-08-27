@@ -58,7 +58,7 @@ const initialState: IStoreState = {
   articles: [],
   isLoading: false,
   sendRequest: false,
-  selectedArticle: {},
+  selectedArticle: null,
 };
 
 export default function articlesReducer(state = initialState, action: Action) {
